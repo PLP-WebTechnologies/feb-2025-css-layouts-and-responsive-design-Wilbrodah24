@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Flexbox Layout</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        
+        /* Navigation Bar */
+        .navbar {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #4CAF50;
+        }
+        
+        /* Hamburger menu - hidden by default */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* Main Content Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .card {
+            background: rgb(15, 12, 12);
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            flex: 1 1 calc(33.333% - 1rem);
+            min-width: 250px;
+        }
+        
+        .card h2 {
+            margin-bottom: 1rem;
+            color: #4CAF50;
+        }
+        
+        .featured {
+            flex: 1 1 100%;
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .featured h2 {
+            color: white;
+        }
+        
+        /* Footer */
+        footer {
+            background: #333;
+            color: rgb(15, 12, 12);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        /* Media Queries for Responsiveness */
+        
+        /* Tablet View */
+        @media (max-width: 900px) {
+            .card {
+                flex: 1 1 calc(50% - 1rem);
+            }
+            
+            .nav-links li {
+                margin-left: 1rem;
+            }
+        }
+        
+        /* Mobile View */
+        @media (max-width: 600px) {
+            /* Hamburger menu appears */
+            .hamburger {
+                display: block;
+            }
+            
+            /* Navigation links become vertical and hidden */
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: #333;
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                transition: left 0.3s;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            /* Cards take full width */
+            .card {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">FlexSite</div>
+        <div class="hamburger">☰</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-content">
+            <div class="card featured">
+                <h2>Welcome to Our Website</h2>
+                <p>This is a featured section that spans the full width of the container. It stands out with a different background color.</p>
+            </div>
+            
+            <div class="card">
+                <h2>Service One</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>
+            </div>
+            
+            <div class="card">
+                <h2>Service Two</h2>
+                <p>Vivamus luctus urna sed urna ultricies ac tempor dui sagittis.</p>
+            </div>
+            
+            <div class="card">
+                <h2>Service Three</h2>
+                <p>Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue.</p>
+            </div>
+            
+            <div class="card">
+                <h2>Service Four</h2>
+                <p>Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam.</p>
+            </div>
+            
+            <div class="card">
+                <h2>Service Five</h2>
+                <p>In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 FlexSite. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        // Toggle mobile menu
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
